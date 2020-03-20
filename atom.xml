@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>跟随内心，成就自己</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://xinzhanguo.github.io/"/>
+  <updated>2019-07-15T11:04:56.000Z</updated>
+  <id>https://xinzhanguo.github.io/</id>
+  
+  <author>
+    <name>xin</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cpu</title>
+    <link href="https://xinzhanguo.github.io/2019/07/15/cpu/"/>
+    <id>https://xinzhanguo.github.io/2019/07/15/cpu/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
