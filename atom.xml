@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>跟随内心，成就自己</title>
+  <title>Do it if I want</title>
   
   
   <link href="/atom.xml" rel="self"/>
@@ -26,6 +26,42 @@
     <summary type="html">
     
       &lt;p&gt;nginx处理图片模块生成缩略图&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>seaweedfs object storage</title>
+    <link href="https://xinzhanguo.github.io/2019/07/15/seaweedfs/"/>
+    <id>https://xinzhanguo.github.io/2019/07/15/seaweedfs/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>gif http image filter module</title>
+    <link href="https://xinzhanguo.github.io/2019/07/15/gif/"/>
+    <id>https://xinzhanguo.github.io/2019/07/15/gif/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
