@@ -1,222 +1,166 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-141119859-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
-  
-  <title>nginx http image filter module | Everything is a choice</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="nginx处理图片模块生成缩略图">
-<meta property="og:type" content="article">
-<meta property="og:title" content="nginx http image filter module">
-<meta property="og:url" content="https://xinzhanguo.github.io/2019/07/15/nginx-http-image-filter-module/index.html">
-<meta property="og:site_name" content="Everything is a choice">
-<meta property="og:description" content="nginx处理图片模块生成缩略图">
-<meta property="article:published_time" content="2019-07-15T11:04:56.000Z">
-<meta property="article:modified_time" content="2019-07-15T11:04:56.000Z">
-<meta property="article:author" content="xin">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@picxin">
-  
-    <link rel="alternate" href="/atom.xml" title="Everything is a choice" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href='//fonts.font.im/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-  
-  
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>Everything is a choice</title>
+    
 <link rel="stylesheet" href="/css/style.css">
 
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
 <meta name="generator" content="Hexo 4.2.0"></head>
-
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Everything is a choice</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/about">About</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xinzhanguo.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-nginx-http-image-filter-module" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/15/nginx-http-image-filter-module/" class="article-date">
-  <time datetime="2019-07-15T11:04:56.000Z" itemprop="datePublished">2019-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      nginx http image filter module
-    </h1>
-  
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>nginx处理图片模块生成缩略图<br><a id="more"></a><br><a href="http://nginx.org/en/docs/http/ngx_http_image_filter_module.html" target="_blank" rel="noopener">nginx docs</a></p>
+        </div>
+        <nav class="header-nav">
+            
+            <a href="/" class="header-nav-link" >
+                首页
+            </a>
+            
+
+            
+            <a href="/archives" class="header-nav-link">
+                归档
+            </a>
+            
+
+            
+            <a href="/tags" class="header-nav-link">
+                标签
+            </a>
+            
+
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">xin's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">nginx http image filter module</h2>
+            <div class="post-meta">
+                <span class="post-time">2019-07-15</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/nginx/">nginx</a>
+                    
+                </span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>nginx处理图片模块生成缩略图<br><a id="more"></a><br><a href="http://nginx.org/en/docs/http/ngx_http_image_filter_module.html" target="_blank" rel="noopener">nginx docs</a></p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf nginx.tar.gz</span><br><span class="line">cd nginx</span><br><span class="line">yum update</span><br><span class="line">yum -y install gcc pcre pcre-devel zlib zlib-devel openssl openssl-devel gd-devel</span><br><span class="line">.&#x2F;configure \</span><br><span class="line">--prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx \</span><br><span class="line">--with-http_ssl_module \</span><br><span class="line">--with-http_stub_status_module \</span><br><span class="line">--with-http_realip_module \</span><br><span class="line">--with-threads \</span><br><span class="line">--with-http_image_filter_module</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name localhost;</span><br><span class="line"> </span><br><span class="line">  location ~ ^&#x2F;([0-9]+)&#x2F;(.*)$ &#123;</span><br><span class="line">    set $width $1;</span><br><span class="line">    set $path $2;</span><br><span class="line">    set $EXPIRE_TIME 1d;</span><br><span class="line">    set $JPG_QUALITY 95;</span><br><span class="line">    rewrite ^ &#x2F;$path break;</span><br><span class="line">    image_filter resize $width -;</span><br><span class="line">    image_filter_buffer 100M;</span><br><span class="line">    image_filter_jpeg_quality $&#123;JPG_QUALITY&#125;;</span><br><span class="line">    expires $&#123;EXPIRE_TIME&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost&#x2F;100&#x2F;example.jpg</span><br></pre></td></tr></table></figure>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">image_filter off;  </span><br><span class="line">#关闭模块  </span><br><span class="line">  </span><br><span class="line">image_filter test;  </span><br><span class="line">#确保图片是jpeg gif png否则返415错误  </span><br><span class="line">  </span><br><span class="line">image_filter size;  </span><br><span class="line">#输出有关图像的json格式：如下显示&#123; &quot;img&quot; : &#123; &quot;width&quot;: 100, &quot;height&quot;: 100, &quot;type&quot;: &quot;gif&quot; &#125; &#125; 出错显示：&#123;&#125;  </span><br><span class="line">  </span><br><span class="line">image_filter rotate 90|180|270;  </span><br><span class="line">#旋转指定度数的图像，参数可以包括变量，单独或一起与resize crop一起使用。  </span><br><span class="line">  </span><br><span class="line">image_filter resize width height;  </span><br><span class="line">#按比例减少图像到指定大小，公减少一个可以另一个用&quot;-&quot;来表示,出错415，参数值可包含变量，可以与rotate一起使用，则两个一起生效。  </span><br><span class="line">  </span><br><span class="line">image_filter crop width height;  </span><br><span class="line">#按比例减少图像比较大的侧面积和另一侧多余的载翦边缘，其它和rotate一样。没太理解  </span><br><span class="line">  </span><br><span class="line">image_filter_buffer 10M;  </span><br><span class="line">#设置读取图像缓冲的最大大小，超过则415错误。  </span><br><span class="line">  </span><br><span class="line">image_filter_interlace on;  </span><br><span class="line">#如果启用，最终的图像将被交错。对于JPEG，最终的图像将在“渐进式JPEG”格式。  </span><br><span class="line">  </span><br><span class="line">image_filter_jpeg_quality 95;  </span><br><span class="line">#设置变换的JPEG图像的期望质量。可接受的值是从1到100的范围内。较小的值通常意味着既降低图像质量，减少传输数据，推荐的最大值为95。参数值可以包含变量。  </span><br><span class="line">  </span><br><span class="line">image_filter_sharpen 100;  </span><br><span class="line">#增加了最终图像的清晰度。锐度百分比可以超过100。零值将禁用锐化。参数值可以包含变量。  </span><br><span class="line">  </span><br><span class="line">image_filter_transparency on;  </span><br><span class="line">#定义是否应该透明转换的GIF图像或PNG图像与调色板中指定的颜色时，可以保留。透明度的损失将导致更好的图像质量。在PNG的Alpha通道总是保留透明度。</span><br></pre></td></tr></table></figure>
-      
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/nginx/" title="nginx">nginx</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+        
+            <a class="next" href="/2019/07/15/seaweedfs/">
+                <span class="nav-default">seaweedfs object storage</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://xinzhanguo.github.io/2019/07/15/nginx-http-image-filter-module/" data-id="ck82hyvxs0000pujcfclhbl68" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2019/07/15/seaweedfs/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">seaweedfs object storage</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
+</div>
+<footer class="footer-social">
     
 
-  
     
 
-  
     
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2021
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a target="_blank" href="https://github.com/iJinxin">xin</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/07/15/nginx-http-image-filter-module/">nginx http image filter module</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/15/seaweedfs/">seaweedfs object storage</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/15/gif/">gif http image filter module</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 xin<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-</nav>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
     
 
-<script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
+</script>
 </html>
