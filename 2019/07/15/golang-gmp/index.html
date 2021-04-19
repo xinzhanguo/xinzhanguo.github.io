@@ -79,23 +79,47 @@
         <div class="posts">
     <article class="post-whole">
         <div class="post-title">
-            <h2 class="title">policy</h2>
+            <h2 class="title">Golang 调度器 GMP 原理与调度全分析</h2>
             <div class="post-meta">
-                <span class="post-time">2019-05-30</span>
+                <span class="post-time">2019-07-15</span>
+                
+                <span class="post-category">
+                    
+                    <a class="category" href="/categories/golang/">golang</a>
+                    
+                </span>
                 
                 <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
             </div>
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-语言调度器"><span class="toc-text">Go 语言调度器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我的理解"><span class="toc-text">我的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程-线程-协程"><span class="toc-text">进程 线程 协程</span></a></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
 </div>
         <div class="post-content">
-            <p>Our Terms of Service is simple: Be excellent to each other.</p>
+            <p>Go 语言的GMP 使得Go有强大并发能力<br><a id="more"></a></p>
+<h3 id="Go-语言调度器"><a href="#Go-语言调度器" class="headerlink" title="Go 语言调度器"></a>Go 语言调度器</h3><ol>
+<li>G — 表示 Goroutine，它是一个待执行的任务；</li>
+<li>M — 表示操作系统的线程，它由操作系统的调度器调度和管理；</li>
+<li>P — 表示处理器，它可以被看做运行在线程上的本地调度器；</li>
+</ol>
+<h3 id="我的理解"><a href="#我的理解" class="headerlink" title="我的理解"></a>我的理解</h3><p>首先Go语言合理利用多核的进行并行处理，也就是多线程 对应GMP中的M。<br>为了减少内核级线程调用切换成本，Go基于协程进行程序任务执行单元。对应GMP中的G。<br>同时go实现对G的调度器，对应GMP中的P。</p>
+<h3 id="进程-线程-协程"><a href="#进程-线程-协程" class="headerlink" title="进程 线程 协程"></a>进程 线程 协程</h3><p>(1) 进程:<br>是资源分配的基本单位。一个进程包括多个线程<br>进程是操作系统对一个正在运行的程序的一种抽象，在一个系统上可以同时运行多个进程，而每个进程都好像在独占地使用硬件。所谓的并发运行，则是说一个进程的指令和另一个进程的指令是交错执行的。无论是在单核还是多核系统中，可以通过处理器在进程间切换，来实现单个 CPU 看上去像是在并发地执行多个进程。操作系统实现这种交错执行的机制称为上下文切换。</p>
+<p>切换成本，<br>好处</p>
+<p>线程:<br>线程：是程序执行流的最小单元，是系统独立调度和分配CPU（独立运行）的基本单位。<br>切换成本,<br>好处</p>
+<p>协程:<br>切换成本,<br>好处</p>
 
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/golang/" title="golang">golang</a>
+            
+            <a class="tag" href="/tags/gmp/" title="gmp">gmp</a>
+            
         </div>
         
     </article>
@@ -103,6 +127,18 @@
 <div class="paginator">
     
         
+            <a class="prev" href="/2019/07/15/gif/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">gif http image filter module</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2019/07/15/seaweedfs/">
+                <span class="nav-default">seaweedfs object storage</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
         
     
 </div>

@@ -37,24 +37,6 @@
   </entry>
   
   <entry>
-    <title>seaweedfs object storage</title>
-    <link href="https://xinzhanguo.github.io/2019/07/15/seaweedfs/"/>
-    <id>https://xinzhanguo.github.io/2019/07/15/seaweedfs/</id>
-    <published>2019-07-15T11:04:56.000Z</published>
-    <updated>2019-07-15T11:04:56.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="seaweedfs" scheme="https://xinzhanguo.github.io/categories/seaweedfs/"/>
-    
-    
-      <category term="fs" scheme="https://xinzhanguo.github.io/tags/fs/"/>
-    
-  </entry>
-  
-  <entry>
     <title>gif http image filter module</title>
     <link href="https://xinzhanguo.github.io/2019/07/15/gif/"/>
     <id>https://xinzhanguo.github.io/2019/07/15/gif/</id>
@@ -77,6 +59,46 @@
     
     
       <category term="gif" scheme="https://xinzhanguo.github.io/tags/gif/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Golang 调度器 GMP 原理与调度全分析</title>
+    <link href="https://xinzhanguo.github.io/2019/07/15/golang-gmp/"/>
+    <id>https://xinzhanguo.github.io/2019/07/15/golang-gmp/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Go 语言的GMP 使得Go有强大并发能力&lt;br&gt;
+    
+    </summary>
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/categories/golang/"/>
+    
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/tags/golang/"/>
+    
+      <category term="gmp" scheme="https://xinzhanguo.github.io/tags/gmp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>seaweedfs object storage</title>
+    <link href="https://xinzhanguo.github.io/2019/07/15/seaweedfs/"/>
+    <id>https://xinzhanguo.github.io/2019/07/15/seaweedfs/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="seaweedfs" scheme="https://xinzhanguo.github.io/categories/seaweedfs/"/>
+    
+    
+      <category term="fs" scheme="https://xinzhanguo.github.io/tags/fs/"/>
     
   </entry>
   
