@@ -3,7 +3,8 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <title>Everything is a choice</title>
+
+    <title>Golang 调度器 GMP 原理与调度全分析</title>
     
 <link rel="stylesheet" href="/css/style.css">
 
@@ -81,11 +82,13 @@
         <div class="post-title">
             <h2 class="title">Golang 调度器 GMP 原理与调度全分析</h2>
             <div class="post-meta">
-                <span class="post-time">2019-07-15</span>
+                <span class="post-time">2020-07-15</span>
                 
                 <span class="post-category">
                     
                     <a class="category" href="/categories/golang/">golang</a>
+                    
+                    <a class="category" href="/categories/golang/gmp/">gmp</a>
                     
                 </span>
                 
@@ -94,19 +97,35 @@
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-语言调度器"><span class="toc-text">Go 语言调度器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我的理解"><span class="toc-text">我的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程-线程-协程"><span class="toc-text">进程 线程 协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx"><span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-text">Redis</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#GMP"><span class="toc-text">GMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#golang程序启动过程"><span class="toc-text">golang程序启动过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程-线程-协程"><span class="toc-text">进程 线程 协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx"><span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-text">Redis</span></a></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
 </div>
         <div class="post-content">
-            <p>Go 语言的GMP 使得Go有强大并发能力<br><a id="more"></a></p>
-<h3 id="Go-语言调度器"><a href="#Go-语言调度器" class="headerlink" title="Go 语言调度器"></a>Go 语言调度器</h3><ol>
+            <p>Golang 调度器 GMP 原理与调度全分析<br><a id="more"></a></p>
+<h3 id="GMP"><a href="#GMP" class="headerlink" title="GMP"></a>GMP</h3><ol>
 <li>G — 表示 Goroutine，它是一个待执行的任务；</li>
 <li>M — 表示操作系统的线程，它由操作系统的调度器调度和管理；</li>
 <li>P — 表示处理器，它可以被看做运行在线程上的本地调度器；</li>
 </ol>
-<h3 id="我的理解"><a href="#我的理解" class="headerlink" title="我的理解"></a>我的理解</h3><p>首先Go语言合理利用多核的进行并行处理，也就是多线程 对应GMP中的M。<br>为了减少内核级线程调用切换成本，Go基于协程进行程序任务执行单元。对应GMP中的G。<br>同时go实现对G的调度器，对应GMP中的P。</p>
+<p>首先Go语言合理利用多核的进行并行处理，也就是多线程 对应GMP中的M。<br>为了减少内核级线程调用切换成本，Go基于协程进行程序任务执行单元。对应GMP中的G。<br>同时go实现对G的调度器，对应GMP中的P。</p>
+<h3 id="golang程序启动过程"><a href="#golang程序启动过程" class="headerlink" title="golang程序启动过程"></a>golang程序启动过程</h3><ul>
+<li><p>runtime<br>runtime 也叫运行时，runtime包含了调度、内存管理、垃圾回收、内部数据结构、定时器和各种系统调用的封装等。可以说golang的强大都归功于runtime的实现。</p>
+</li>
+<li><p>scheduler<br>scheduler 有调度器、日程安排的意识，这里是指调度器，它的工作是将准备好运行的goroutine分散到工作线程中执行。</p>
+</li>
+</ul>
+<p>程序启动，runtime.main 创建最初线程 m0  创建最初 goroutine g0 关联m0 和 g0 / 初始化调度器 创建 M P / 创建main的goroutine / 绑定M和P/ M使用P获取G/M设置G运行环境/M执行G/G退出</p>
+<p>首先创建一个G对象，然后G被保存在P的本地队列或者全局队列（global queue）。这时P会唤醒一个M。P按照它的执行顺序继续执行任务。M寻找一个空闲的P，如果找得到，将G移动到它自己。然后M执行一个调度循环：调用G对象-&gt;执行-&gt;清理线程-&gt;继续寻找Goroutine。</p>
+<p>在M的执行过程中，上下文切换随时发生。当切换发生，任务的执行现场需要被保护，这样在下一次调度执行可以进行现场恢复。M的栈保存在G对象，只有现场恢复需要的寄存器(SP,PC等)，需要被保存到G对象。</p>
+<p>如果G对象还没有被执行，M可以将G重新放到P的调度队列，等待下一次的调度执行。当调度执行时，M可以通过G的vdsoSP, vdsoPC 寄存器进行现场恢复。</p>
+<ul>
+<li><p>scheduler<br><img src="/storage/2019-03-goroutine-scheduler-model.png" alt=""></p>
+</li>
+<li><p>scheduler<br><img src="/storage/2019-03-scheduler-lifetime.png" alt=""></p>
+</li>
+</ul>
 <h3 id="进程-线程-协程"><a href="#进程-线程-协程" class="headerlink" title="进程 线程 协程"></a>进程 线程 协程</h3><p>(1) 进程:<br>是资源分配的基本单位。一个进程可以包括多个线程<br>进程是操作系统对一个正在运行的程序的一种抽象，在一个系统上可以同时运行多个进程，而每个进程都好像在独占地使用硬件。所谓的并发运行，则是说一个进程的指令和另一个进程的指令是交错执行的。无论是在单核还是多核系统中，可以通过处理器在进程间切换，来实现单个 CPU 看上去像是在并发地执行多个进程。操作系统实现这种交错执行的机制称为上下文切换。<br>进程间隔离，通信问题比较麻烦.<br>切换成本:<br>虚拟内存 4G<br>好处</p>
 <p>线程:<br>线程：是程序执行流的最小单元，是系统独立调度和分配CPU（独立运行）的基本单位。<br>切换成本,<br>好处<br>数据共享，同时带来坏处需要锁进行安全操作</p>
 <p>协程:<br>切换成本,<br>数据需要锁，channel<br>好处</p>
@@ -128,15 +147,9 @@
 <div class="paginator">
     
         
-            <a class="prev" href="/nginx-http-image-filter-module/">
-                <i class="iconfont icon-prev"></i>
+        
+            <a class="next" href="/nginx-http-image-filter-module/">
                 <span class="nav-default">nginx http image filter module</span>
-                <span class="nav-mobile">上一篇</span>
-            </a>
-        
-        
-            <a class="next" href="/gif/">
-                <span class="nav-default">gif http image filter module</span>
                 <span class="nav-mobile">下一篇</span>
                 <i class="iconfont icon-next"></i>
             </a>
