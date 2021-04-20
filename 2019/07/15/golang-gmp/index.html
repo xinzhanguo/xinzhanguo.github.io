@@ -94,7 +94,7 @@
         </div>
         <div class="post-toc" id="post-toc">
     <strong class="post-toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-语言调度器"><span class="toc-text">Go 语言调度器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我的理解"><span class="toc-text">我的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程-线程-协程"><span class="toc-text">进程 线程 协程</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-语言调度器"><span class="toc-text">Go 语言调度器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我的理解"><span class="toc-text">我的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程-线程-协程"><span class="toc-text">进程 线程 协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx"><span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-text">Redis</span></a></li></ol>
     <div class="back-to-top" id="back-to-top">
         <a href="javascript:void(0);">回到顶部</a>
     </div>
@@ -111,6 +111,8 @@
 <p>切换成本，<br>好处</p>
 <p>线程:<br>线程：是程序执行流的最小单元，是系统独立调度和分配CPU（独立运行）的基本单位。<br>切换成本,<br>好处</p>
 <p>协程:<br>切换成本,<br>好处</p>
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>多进程 核心是 实现多并发的核心是IO多路复用<br>nginx多进程好处，子进程之间独立，合理利用多核</p>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>实现多并发的核心核心是IO多路复用操作内存比较快<br>核心单线程，顺序执行，避免了数据操作的加减锁，减少复杂度，也就是只能利用单核，<br>缺点 如果比较耗时的命令，会阻塞，如 KEYS，SAVE，FLUSHDB，会造成客户端超时等现象<br>BGSAVE 是fork一个子进程，会短暂阻塞命令线程。</p>
 
         </div>
         
@@ -127,15 +129,9 @@
 <div class="paginator">
     
         
-            <a class="prev" href="/2019/07/15/gif/">
-                <i class="iconfont icon-prev"></i>
-                <span class="nav-default">gif http image filter module</span>
-                <span class="nav-mobile">上一篇</span>
-            </a>
         
-        
-            <a class="next" href="/2019/07/15/seaweedfs/">
-                <span class="nav-default">seaweedfs object storage</span>
+            <a class="next" href="/2019/07/15/nginx-http-image-filter-module/">
+                <span class="nav-default">nginx http image filter module</span>
                 <span class="nav-mobile">下一篇</span>
                 <i class="iconfont icon-next"></i>
             </a>
