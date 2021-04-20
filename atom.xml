@@ -17,9 +17,29 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>nginx http image filter module</title>
+    <link href="https://xinzhanguo.github.io/nginx-http-image-filter-module/"/>
+    <id>https://xinzhanguo.github.io/nginx-http-image-filter-module/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;nginx处理图片模块生成缩略图&lt;br&gt;
+    
+    </summary>
+    
+      <category term="nginx" scheme="https://xinzhanguo.github.io/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="https://xinzhanguo.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Golang 调度器 GMP 原理与调度全分析</title>
-    <link href="https://xinzhanguo.github.io/2019/07/15/golang-gmp/"/>
-    <id>https://xinzhanguo.github.io/2019/07/15/golang-gmp/</id>
+    <link href="https://xinzhanguo.github.io/golang-gmp/"/>
+    <id>https://xinzhanguo.github.io/golang-gmp/</id>
     <published>2019-07-15T11:04:56.000Z</published>
     <updated>2019-07-15T11:04:56.000Z</updated>
     
@@ -39,29 +59,9 @@
   </entry>
   
   <entry>
-    <title>nginx http image filter module</title>
-    <link href="https://xinzhanguo.github.io/2019/07/15/nginx-http-image-filter-module/"/>
-    <id>https://xinzhanguo.github.io/2019/07/15/nginx-http-image-filter-module/</id>
-    <published>2019-07-15T11:04:56.000Z</published>
-    <updated>2019-07-15T11:04:56.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;nginx处理图片模块生成缩略图&lt;br&gt;
-    
-    </summary>
-    
-      <category term="nginx" scheme="https://xinzhanguo.github.io/categories/nginx/"/>
-    
-    
-      <category term="nginx" scheme="https://xinzhanguo.github.io/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
     <title>gif http image filter module</title>
-    <link href="https://xinzhanguo.github.io/2019/07/15/gif/"/>
-    <id>https://xinzhanguo.github.io/2019/07/15/gif/</id>
+    <link href="https://xinzhanguo.github.io/gif/"/>
+    <id>https://xinzhanguo.github.io/gif/</id>
     <published>2019-07-15T11:04:56.000Z</published>
     <updated>2019-07-15T11:04:56.000Z</updated>
     
@@ -86,8 +86,8 @@
   
   <entry>
     <title>seaweedfs object storage</title>
-    <link href="https://xinzhanguo.github.io/2019/07/15/seaweedfs/"/>
-    <id>https://xinzhanguo.github.io/2019/07/15/seaweedfs/</id>
+    <link href="https://xinzhanguo.github.io/seaweedfs/"/>
+    <id>https://xinzhanguo.github.io/seaweedfs/</id>
     <published>2019-07-15T11:04:56.000Z</published>
     <updated>2019-07-15T11:04:56.000Z</updated>
     
