@@ -41,22 +41,26 @@
   </entry>
   
   <entry>
-    <title>nginx http image filter module</title>
-    <link href="https://xinzhanguo.github.io/nginx-http-image-filter-module/"/>
-    <id>https://xinzhanguo.github.io/nginx-http-image-filter-module/</id>
+    <title>golang map mutex</title>
+    <link href="https://xinzhanguo.github.io/golang-map-mutex/"/>
+    <id>https://xinzhanguo.github.io/golang-map-mutex/</id>
     <published>2019-07-15T11:04:56.000Z</published>
     <updated>2019-07-15T11:04:56.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;nginx处理图片模块生成缩略图&lt;br&gt;
+      &lt;p&gt;golang gc&lt;br&gt;
     
     </summary>
     
-      <category term="nginx" scheme="https://xinzhanguo.github.io/categories/nginx/"/>
+      <category term="golang" scheme="https://xinzhanguo.github.io/categories/golang/"/>
+    
+      <category term="map" scheme="https://xinzhanguo.github.io/categories/golang/map/"/>
+    
+      <category term="mutex" scheme="https://xinzhanguo.github.io/categories/golang/map/mutex/"/>
     
     
-      <category term="nginx" scheme="https://xinzhanguo.github.io/tags/nginx/"/>
+      <category term="golang" scheme="https://xinzhanguo.github.io/tags/golang/"/>
     
   </entry>
   
@@ -101,6 +105,312 @@
     
     
       <category term="fs" scheme="https://xinzhanguo.github.io/tags/fs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>golang channel</title>
+    <link href="https://xinzhanguo.github.io/golang-channel/"/>
+    <id>https://xinzhanguo.github.io/golang-channel/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/categories/golang/"/>
+    
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>golang base</title>
+    <link href="https://xinzhanguo.github.io/golang-base/"/>
+    <id>https://xinzhanguo.github.io/golang-base/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/categories/golang/"/>
+    
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>golang gc</title>
+    <link href="https://xinzhanguo.github.io/golang-gc/"/>
+    <id>https://xinzhanguo.github.io/golang-gc/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;golang gc&lt;br&gt;
+    
+    </summary>
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/categories/golang/"/>
+    
+      <category term="gc" scheme="https://xinzhanguo.github.io/categories/golang/gc/"/>
+    
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/tags/golang/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>http base</title>
+    <link href="https://xinzhanguo.github.io/https/"/>
+    <id>https://xinzhanguo.github.io/https/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="http" scheme="https://xinzhanguo.github.io/categories/http/"/>
+    
+    
+      <category term="http" scheme="https://xinzhanguo.github.io/tags/http/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx http image filter module</title>
+    <link href="https://xinzhanguo.github.io/nginx-http-image-filter-module/"/>
+    <id>https://xinzhanguo.github.io/nginx-http-image-filter-module/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;nginx处理图片模块生成缩略图&lt;br&gt;
+    
+    </summary>
+    
+      <category term="nginx" scheme="https://xinzhanguo.github.io/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="https://xinzhanguo.github.io/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql</title>
+    <link href="https://xinzhanguo.github.io/mysql/"/>
+    <id>https://xinzhanguo.github.io/mysql/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="https://xinzhanguo.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://xinzhanguo.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>golang distributed object storage</title>
+    <link href="https://xinzhanguo.github.io/golang-object-storage/"/>
+    <id>https://xinzhanguo.github.io/golang-object-storage/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="golang" scheme="https://xinzhanguo.github.io/categories/golang/"/>
+    
+      <category term="distributed" scheme="https://xinzhanguo.github.io/categories/golang/distributed/"/>
+    
+      <category term="storage" scheme="https://xinzhanguo.github.io/categories/golang/distributed/storage/"/>
+    
+    
+      <category term="object storage" scheme="https://xinzhanguo.github.io/tags/object-storage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>protobuf base</title>
+    <link href="https://xinzhanguo.github.io/protobuf/"/>
+    <id>https://xinzhanguo.github.io/protobuf/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="k8s" scheme="https://xinzhanguo.github.io/categories/k8s/"/>
+    
+    
+      <category term="k8s" scheme="https://xinzhanguo.github.io/tags/k8s/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>replication consistency</title>
+    <link href="https://xinzhanguo.github.io/replication-consistency/"/>
+    <id>https://xinzhanguo.github.io/replication-consistency/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="consistency" scheme="https://xinzhanguo.github.io/categories/consistency/"/>
+    
+    
+      <category term="consistency" scheme="https://xinzhanguo.github.io/tags/consistency/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis</title>
+    <link href="https://xinzhanguo.github.io/redis/"/>
+    <id>https://xinzhanguo.github.io/redis/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="redis" scheme="https://xinzhanguo.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="https://xinzhanguo.github.io/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tcp base</title>
+    <link href="https://xinzhanguo.github.io/tcp/"/>
+    <id>https://xinzhanguo.github.io/tcp/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="tcp" scheme="https://xinzhanguo.github.io/categories/tcp/"/>
+    
+    
+      <category term="tcp" scheme="https://xinzhanguo.github.io/tags/tcp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>k8s base</title>
+    <link href="https://xinzhanguo.github.io/k8s/"/>
+    <id>https://xinzhanguo.github.io/k8s/</id>
+    <published>2019-07-15T11:04:56.000Z</published>
+    <updated>2019-07-15T11:04:56.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="k8s" scheme="https://xinzhanguo.github.io/categories/k8s/"/>
+    
+    
+      <category term="k8s" scheme="https://xinzhanguo.github.io/tags/k8s/"/>
     
   </entry>
   
