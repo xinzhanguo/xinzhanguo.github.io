@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>狂飙突击 - 磁铁增强版</title>
+    <title>狂飙突击 - 初期平衡优化版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body, html {
@@ -51,7 +51,6 @@
         <canvas id="gameCanvas"></canvas>
 
         <div id="uiLayer" class="absolute inset-0 pointer-events-none flex flex-col justify-end p-6">
-            <!-- Threat Alert -->
             <div id="threatAlert" class="hidden absolute top-20 left-1/2 -translate-x-1/2 px-4 py-1 bg-amber-500/10 border border-amber-500/30 rounded-full">
                 <span class="text-amber-500 text-[10px] font-bold uppercase tracking-widest animate-pulse">High Threat Level: Scaling Resistance</span>
             </div>
@@ -88,7 +87,6 @@
                                 <span class="text-slate-500 text-[9px] block font-black uppercase">Drn</span>
                                 <span id="clonesDisplay" class="text-white font-bold text-base">0</span>
                             </div>
-                            <!-- 新增磁铁范围显示 -->
                             <div class="text-center">
                                 <span class="text-slate-500 text-[9px] block font-black uppercase">Mag</span>
                                 <span id="magDisplay" class="text-white font-bold text-base">60</span>
@@ -101,7 +99,7 @@
 
         <div id="menuScreen" class="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center pointer-events-auto z-50 p-8 text-center">
             <h1 class="text-5xl font-black text-white italic tracking-tighter mb-2">LAST WAR</h1>
-            <p class="text-slate-600 text-[10px] tracking-[0.5em] uppercase mb-12">Magnet System v14.0</p>
+            <p class="text-slate-600 text-[10px] tracking-[0.5em] uppercase mb-12">Difficulty Balanced v17.0</p>
             
             <div id="gameOverStats" class="hidden flex-col items-center mb-10">
                 <span id="finalScore" class="text-6xl font-black text-white mb-2">0</span>
@@ -115,6 +113,38 @@
     </div>
 
 <script type="module">
+    // --- Audio Engine ---
+    class SoundEngine {
+        constructor() { this.ctx = null; }
+        init() {
+            if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+            if (this.ctx.state === 'suspended') this.ctx.resume();
+        }
+        playTone(freq, type, duration, volume, decay = true) {
+            if (!this.ctx) return;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(volume, this.ctx.currentTime);
+            if (decay) gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + duration);
+            osc.connect(gain); gain.connect(this.ctx.destination);
+            osc.start(); osc.stop(this.ctx.currentTime + duration);
+        }
+        shoot() { this.playTone(800 + Math.random() * 200, 'square', 0.05, 0.03); }
+        hit() { this.playTone(150, 'sawtooth', 0.08, 0.05); }
+        buff() {
+            this.playTone(523.25, 'triangle', 0.1, 0.1);
+            setTimeout(() => this.playTone(659.25, 'triangle', 0.1, 0.1), 60);
+            setTimeout(() => this.playTone(783.99, 'triangle', 0.1, 0.1), 120);
+        }
+        damage() { this.playTone(100, 'sawtooth', 0.4, 0.15); }
+        bossSpawn() { this.playTone(80, 'square', 1.0, 0.15, false); }
+        gateBreak() { this.playTone(300, 'square', 0.2, 0.1); }
+    }
+
+    const sfx = new SoundEngine();
+
     const dom = {
         score: document.getElementById('scoreDisplay'),
         combo: document.getElementById('comboDisplay'),
@@ -186,7 +216,7 @@
             this.damage = 1; 
             this.fireRate = 2.5; 
             this.clones = 0;
-            this.magnetRadius = 60; // 初始磁铁半径
+            this.magnetRadius = 60;
             this.lastShot = 0; 
             this.lives = 5; 
             this.isInvincible = false; 
@@ -204,6 +234,7 @@
             if (this.isInvincible || gameState !== STATE.PLAYING) return;
             this.lives--;
             updateLivesUI();
+            sfx.damage();
             dom.flash.style.opacity = '1';
             setTimeout(() => { if(dom.flash) dom.flash.style.opacity = '0'; }, 200);
             if (this.lives <= 0) endGame();
@@ -228,14 +259,13 @@
         }
 
         shoot() {
+            sfx.shoot();
             const count = 1 + this.clones;
             let spread = 22; 
             const maxAllowedWidth = width * MAX_SPREAD_WIDTH;
             const currentTotalWidth = (count - 1) * spread;
 
-            if (currentTotalWidth > maxAllowedWidth) {
-                spread = maxAllowedWidth / (count - 1);
-            }
+            if (currentTotalWidth > maxAllowedWidth) spread = maxAllowedWidth / (count - 1);
 
             const startX = this.x - ((count - 1) * spread) / 2;
             for (let i = 0; i < count; i++) {
@@ -244,7 +274,6 @@
         }
 
         draw() {
-            // 可视化磁铁范围（仅调试或淡淡的特效）
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.magnetRadius, 0, Math.PI * 2);
             ctx.strokeStyle = 'rgba(56, 189, 248, 0.05)';
@@ -259,15 +288,17 @@
     }
 
     function applyBuff(type) {
+        sfx.buff();
         if (type === 'rpm') player.fireRate = Math.min(MAX_FIRE_RATE, player.fireRate + 0.4);
         else if (type === 'dmg') player.damage += 1; 
         else if (type === 'drones') player.clones = Math.min(MAX_CLONES, player.clones + 1);
-        else if (type === 'mag') player.magnetRadius += 15; // 磁铁范围增加
+        else if (type === 'mag') player.magnetRadius += 15;
         updateDisplays(true);
     }
 
     function spawnBoss() {
         isBossFight = true;
+        sfx.bossSpawn();
         dom.bossWarn.classList.remove('hidden');
         setTimeout(() => dom.bossWarn.classList.add('hidden'), 3000);
 
@@ -298,17 +329,16 @@
         if (strength > 4.5) dom.threat.classList.remove('hidden');
         else dom.threat.classList.add('hidden');
 
-        const difficultyScale = Math.min(2.8, 0.6 + (strength * 0.15) + (distance / 60000));
-        const spawnScale = Math.min(1.0, 0.25 + (distance / 15000) * 0.75);
+        // Dynamic Balance: Low initial difficulty scaling
+        const difficultyScale = Math.min(2.8, 0.6 + (strength * 0.12) + (distance / 70000));
+        const spawnScale = Math.min(1.0, 0.25 + (distance / 20000) * 0.75);
         const baseSpawnChance = isBossFight ? 0.05 : 0.025; 
         const adaptiveSpawnChance = Math.min(0.065, baseSpawnChance * (1 + strength * 0.04));
         
         if (Math.random() < (adaptiveSpawnChance * spawnScale) * gameSpeed) {
             const isElite = strength > 2.0 && Math.random() < Math.min(0.35, strength * 0.025);
             let baseHp = 1;
-            if (distance > 5000) {
-                baseHp = 1 + Math.pow((distance - 5000) / 15000, 2.0) * 15;
-            }
+            if (distance > 5000) baseHp = 1 + Math.pow((distance - 5000) / 15000, 2.0) * 15;
             const finalHp = Math.ceil(baseHp * difficultyScale * (isElite ? 4.5 : 1));
             
             enemies.push({ 
@@ -325,10 +355,14 @@
         if (Math.floor(distance + 800) % gateInterval < 6 && !isBossFight) {
             const types = ['rpm', 'dmg', 'drones', 'mag'];
             const t1 = types[Math.floor(Math.random() * types.length)];
+            
+            // BALANCE ADJUSTMENT: Lower initial Gate HP (from 5 to 2)
+            const gateHp = 2 + Math.floor(distance / 7000);
             gates.push({ 
                 x: 10 + Math.random() * (width * 0.5 - width/2.2 - 20), 
                 y: -100, type: t1, val: 1, 
-                speed: 2.0 * gameSpeed 
+                speed: 2.0 * gameSpeed,
+                hp: gateHp, maxHp: gateHp, shake: 0
             });
         }
 
@@ -347,11 +381,8 @@
 
         for(let i = drops.length - 1; i >= 0; i--) {
             const d = drops[i];
-            
-            // --- 磁铁吸附逻辑 ---
             const dist = Math.hypot(d.x - player.x, d.y - player.y);
             if (dist < player.magnetRadius) {
-                // 进入范围，向玩家飞掠
                 const angle = Math.atan2(player.y - d.y, player.x - d.x);
                 d.x += Math.cos(angle) * 12;
                 d.y += Math.sin(angle) * 12;
@@ -371,17 +402,43 @@
 
         for(let i = gates.length - 1; i >= 0; i--) {
             const g = gates[i]; g.y += g.speed;
+            if (g.shake > 0) g.shake -= 1;
+
             ctx.save();
-            ctx.fillStyle = 'rgba(16, 185, 129, 0.15)';
-            ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2;
-            ctx.strokeRect(g.x, g.y, width/2.2, 55); ctx.fillRect(g.x, g.y, width/2.2, 55);
+            const hpRatio = g.hp / g.maxHp;
+            ctx.translate((Math.random() - 0.5) * g.shake, 0); 
+            ctx.fillStyle = `rgba(16, 185, 129, ${0.1 + (1 - hpRatio) * 0.4})`; // Enhanced visual feedback
+            ctx.strokeStyle = `rgba(16, 185, 129, ${0.4 + (1 - hpRatio) * 0.6})`; 
+            ctx.lineWidth = 3;
+            ctx.strokeRect(g.x, g.y, width/2.2, 55); 
+            ctx.fillRect(g.x, g.y, width/2.2, 55);
+
+            ctx.fillStyle = '#10b981';
+            ctx.fillRect(g.x, g.y + 52, (width/2.2) * hpRatio, 3);
+
             ctx.fillStyle = '#fff'; ctx.font = 'bold 13px Inter'; ctx.textAlign = 'center';
-            ctx.fillText("+" + g.val + " " + g.type.toUpperCase(), g.x + width/4.4, g.y + 34);
+            ctx.fillText("ATTACK TO UNLOCK", g.x + width/4.4, g.y + 22);
+            ctx.font = 'bold 16px Inter';
+            ctx.fillText("+" + g.val + " " + g.type.toUpperCase(), g.x + width/4.4, g.y + 40);
             ctx.restore();
 
-            if (g.y + 55 > player.y && g.x < player.x + 15 && g.x + width/2.2 > player.x - 15) {
-                applyBuff(g.type); gates.splice(i, 1);
-            } else if (g.y > height) gates.splice(i, 1);
+            for (let j = bullets.length - 1; j >= 0; j--) {
+                const b = bullets[j];
+                if (b.x > g.x && b.x < g.x + width/2.2 && b.y > g.y && b.y < g.y + 55) {
+                    g.hp -= b.dmg;
+                    g.shake = 5;
+                    sfx.hit();
+                    bullets.splice(j, 1);
+                }
+            }
+
+            if (g.hp <= 0) {
+                applyBuff(g.type);
+                sfx.gateBreak();
+                gates.splice(i, 1);
+            } else if (g.y > height) {
+                gates.splice(i, 1);
+            }
         }
 
         for(let i = enemies.length - 1; i >= 0; i--) {
@@ -402,7 +459,9 @@
             for(let j = bullets.length - 1; j >= 0; j--) {
                 const b = bullets[j];
                 if (b.x > e.x && b.x < e.x + e.width && b.y > e.y && b.y < e.y + e.height) {
-                    e.hp -= b.dmg; bullets.splice(j, 1);
+                    e.hp -= b.dmg; 
+                    sfx.hit();
+                    bullets.splice(j, 1);
                 }
             }
 
@@ -413,7 +472,8 @@
             if (e.hp <= 0) { 
                 score += e.isBoss ? 10000 : (e.isElite ? 250 : 25); 
                 combo++; 
-                const dropChance = e.isBoss ? 1.0 : (e.isElite ? 0.6 : 0.2); 
+                // BALANCE: Increase drop chance at early game
+                const dropChance = e.isBoss ? 1.0 : (e.isElite ? 0.7 : 0.3); 
                 if (Math.random() < dropChance) {
                     const types = ['rpm', 'dmg', 'drones', 'mag'];
                     const count = e.isBoss ? 5 : (e.isElite ? 2 : 1);
@@ -444,12 +504,10 @@
         if (force && player) {
             dom.dmg.textContent = Math.floor(player.damage);
             dom.mag.textContent = Math.floor(player.magnetRadius);
-            
             const rpmVal = player.fireRate;
             dom.rpm.textContent = rpmVal.toFixed(1);
             if (rpmVal >= MAX_FIRE_RATE) dom.rpm.classList.add('max-stat');
             else dom.rpm.classList.remove('max-stat');
-            
             const clonesVal = player.clones;
             dom.drn.textContent = clonesVal;
             if (clonesVal >= MAX_CLONES) dom.drn.classList.add('max-stat');
@@ -479,6 +537,7 @@
     }
 
     document.getElementById('startBtn').onclick = () => {
+        sfx.init();
         player = new Player();
         bullets = []; enemies = []; gates = []; drops = []; score = 0; combo = 0; distance = 0; gameSpeed = 1;
         isBossFight = false; nextBossDistance = 15000;
